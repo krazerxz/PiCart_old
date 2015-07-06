@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-  get 'barcodes/new'
+    get 'barcodes/new'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
