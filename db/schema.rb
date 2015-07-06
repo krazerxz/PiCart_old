@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706104432) do
-
+ActiveRecord::Schema.define(version: 20_150_706_104_432) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "barcodes", force: :cascade do |t|
-    t.integer  "upc"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'barcodes', force: :cascade do |t|
+    t.integer 'upc',        limit: 8
+    t.datetime 'created_at',           null: false
+    t.datetime 'updated_at',           null: false
   end
-
 end
