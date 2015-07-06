@@ -15,7 +15,7 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'rubocop'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
-
