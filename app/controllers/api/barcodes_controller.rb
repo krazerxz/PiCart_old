@@ -1,5 +1,5 @@
 class Api::BarcodesController < ApplicationController
-   protect_from_forgery :except => :create
+  protect_from_forgery except: :create
 
   def create
     Barcode.create(barcode_params)
