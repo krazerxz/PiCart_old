@@ -3,5 +3,5 @@ When 'I post a barcode to the api' do
 end
 
 Then 'a barcode is saved in the database' do
-  expect(true).to be false
+  expect(Barcode.all.first.upc).to eq 12345678
 end
