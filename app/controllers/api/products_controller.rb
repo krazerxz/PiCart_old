@@ -1,11 +1,10 @@
-class Api::BarcodesController < ApplicationController
+class Api::ProductsController < ApplicationController
   protect_from_forgery except: :create
 
   def create
     upc_code = barcode_params[:upc].match(/0*(\w+)/)[1]
     fail BarcodeException if upc_code =~ /\D/
-    Barcode.create('upc' => upc_code)
-    # resolve barcode
+    SearchUPCWraper.new.get_product_for(upc_code)
     render nothing: true
   end
 
