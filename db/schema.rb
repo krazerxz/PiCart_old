@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_150_706_104_432) do
+ActiveRecord::Schema.define(version: 20_150_707_150_222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -19,5 +19,14 @@ ActiveRecord::Schema.define(version: 20_150_706_104_432) do
     t.integer 'upc',        limit: 8
     t.datetime 'created_at',           null: false
     t.datetime 'updated_at',           null: false
+  end
+
+  create_table 'products', force: :cascade do |t|
+    t.string 'title'
+    t.string 'image'
+    t.boolean 'details_found', default: false
+    t.string 'barcode'
+    t.datetime 'created_at',                    null: false
+    t.datetime 'updated_at',                    null: false
   end
 end

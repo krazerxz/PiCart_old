@@ -7,14 +7,11 @@ class SearchUPCWraper
 
   def get_product_for(upc_code)
     result = fill_upc_form_with upc_code
-
     images = result.images.select { |image| image.title == 'Product Image' }
-    # return Product.create(upc: upc_code) if images.empty?
+    return Product.create(barcode: upc_code) if images.empty?
     title = result.links[1].text
     url = images.first.url
-
     Product.create(title: title, image: url, details_found: true, barcode: upc_code)
-    #{ title: title, image: url }
   end
 
   private
