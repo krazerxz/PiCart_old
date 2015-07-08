@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => :create
 
   def index
     @products = Product.all
   end
 
   def show
+    #@product
   end
 
   def new
@@ -13,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    #@product
   end
 
   def create
