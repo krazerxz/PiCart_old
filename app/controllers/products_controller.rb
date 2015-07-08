@@ -1,13 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  protect_from_forgery :except => :create
+  protect_from_forgery except: :create
 
   def index
     @products = Product.all
   end
 
   def show
-    #@product
+    # @product
   end
 
   def new
@@ -15,14 +15,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    #@product
+    # @product
   end
 
   def create
-    barcode = product_params[:barcode].match(/0*(\w+)/)[1]
-    fail BarcodeException if barcode =~ /\D/
-    @product = Product.find_by(barcode: barcode)
-    @product = SearchUPCWraper.new.get_product_for(barcode) if @product.nil?
+    resolve product_params[:barcode]
 
     respond_to do |format|
       if @product.save
@@ -56,6 +53,14 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def resolve(barcode)
+    barcode = barcode.match(/0*(\w+)/)[1]
+    fail BarcodeException if barcode =~ /\D/
+    @product = Product.find_by(barcode: barcode)
+    @product = SearchUPCWraper.new.get_product_for(barcode) if @product.nil?
+  end
+
   def set_product
     @product = Product.find(params[:id])
   end
