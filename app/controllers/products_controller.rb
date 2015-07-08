@@ -16,11 +16,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    upc_code = barcode_params[:upc].match(/0*(\w+)/)[1]
-    fail BarcodeException if upc_code =~ /\D/
-    SearchUPCWraper.new.get_product_for(upc_code)
-    product = Product.find_by(barcode: upc_code)
-    SearchUPCWraper.new.get_product_for(upc_code) if product.nil?
+    barcode = product_params[:barcode].match(/0*(\w+)/)[1]
+    fail BarcodeException if barcode =~ /\D/
+    SearchUPCWraper.new.get_product_for(barcode)
+    product = Product.find_by(barcode: barcode)
+    SearchUPCWraper.new.get_product_for(barcode) if product.nil?
     render nothing: true
 
     respond_to do |format|
