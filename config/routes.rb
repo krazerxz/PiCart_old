@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'products', to: 'products#index'
+  resources :products
 
-  namespace :api do
-    post 'products', to: 'products#create'
-  end
+  root 'products#index'
 end

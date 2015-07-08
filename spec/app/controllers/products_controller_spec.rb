@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::ProductsController, type: :controller do
+describe ProductsController, type: :controller do
   describe '#create' do
     let(:search_upc_wrapper) { double(:search_upc_wrapper) }
 
@@ -25,9 +25,11 @@ describe Api::ProductsController, type: :controller do
         expect(Product).to receive(:find_by).with(barcode: '87654321')
         post :create, upc: '87654321'
       end
+
     end
 
     context 'a product with the given upc could not be found in the local database' do
+
       before do
         allow(Product).to receive(:find_by).with(barcode: '87654321').and_return nil
       end
